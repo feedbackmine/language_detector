@@ -1,0 +1,5 @@
+Manifest.txt
+README
+lib/language_detector.rb  
+lib/model.yml
+test/language_detector_test.rb
