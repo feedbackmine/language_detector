@@ -14,7 +14,7 @@ d = LanguageDetector.new
 p d.detect('this text is in English')
 
 == Thanks
-Kevin Burton (http://feedblog.org/2005/08/19/ngram-language-categorization-source/). I used all the training data in his ngramcat project.
+Kevin Burton (http://feedblog.org/2005/08/19/ngram-language-categorization-source/ ). I used all the training data in his ngramcat project.
 
 == Follow us on twitter
 
