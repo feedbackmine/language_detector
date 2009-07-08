@@ -29,7 +29,7 @@ class ProfileTest < Test::Unit::TestCase
   def test_init_with_string
     p = Profile.new("test")
     p.init_with_string("this is ,+_  A \t 123 test")
-    assert_equal([["st", 12], ["hi", 7], ["tes", 3], ["es", 4], ["te", 6], ["est", 5], ["his", 8], ["test", 2], ["this", 9], ["th", 10], ["thi", 11], ["is", 1]], p.ngrams.sort_by { |a,b| a[1] <=> b[1] })
+    assert_equal([["t_", 30], ["st__", 29], ["st", 16], ["hi", 8], ["_tes", 7], ["is__", 6], ["s___", 5], ["s_", 3], ["his_", 11], ["tes", 10], ["t___", 9], ["es", 12], ["_te", 14], ["est_", 13], ["est", 15], ["te", 4], ["his", 17], ["_th", 20], ["s__", 19], ["st_", 18], ["th", 24], ["_thi", 23], ["t__", 22], ["test", 21], ["thi", 28], ["is_", 27], ["this", 26], ["_i", 25], ["is", 2], ["_t", 1]], p.ngrams.sort_by { |a,b| a[1] <=> b[1] })
   end
 
   def test_init_with_file
@@ -55,7 +55,7 @@ class LanguageDetectorTest < Test::Unit::TestCase
   def test_detect
     d = LanguageDetector.new
 
-    #assert_equal "es", d.detect("para poner este importante proyecto en práctica")
+    assert_equal "es", d.detect("para poner este importante proyecto en práctica")
     assert_equal "en", d.detect("this is a test of the Emergency text categorizing system.")
     assert_equal "fr", d.detect("serait désigné peu après PDG d'Antenne 2 et de FR 3. Pas même lui ! Le")
     assert_equal "it", d.detect("studio dell'uomo interiore? La scienza del cuore umano, che")
@@ -71,5 +71,6 @@ class LanguageDetectorTest < Test::Unit::TestCase
     assert_equal "cs", d.detect("datují rokem 1862.  Naprosto zakázán byl v pocitech smutku, beznadìje èi jiné")
     assert_equal "no", d.detect("hånd på den enda hvitere restaurant-duken med en bevegelse så forfinet")
     assert_equal "pt", d.detect("popular. Segundo o seu biógrafo, a Maria Adelaide auxiliava muita gente")
+    assert_equal "en", d.detect("TaffyDB finders looking nice so far!")
   end
 end
