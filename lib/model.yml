@@ -1,5 +1,5 @@
 --- 
-- !ruby/object:Profile 
+- !ruby/object:LanguageDetector::Profile 
   name: ar
   ngrams: 
     ? !binary "qtmH\n"
@@ -5149,7 +5149,7 @@
     43: 1
     32: 1
     10: 1
-- !ruby/object:Profile 
+- !ruby/object:LanguageDetector::Profile 
   name: bg
   ngrams: 
     ? !binary "0L7QtNA=\n"
@@ -10519,7 +10519,7 @@
     43: 1
     32: 1
     10: 1
-- !ruby/object:Profile 
+- !ruby/object:LanguageDetector::Profile 
   name: cs
   ngrams: 
     He: 765
@@ -12641,7 +12641,7 @@
     43: 1
     32: 1
     10: 1
-- !ruby/object:Profile 
+- !ruby/object:LanguageDetector::Profile 
   name: da
   ngrams: 
     erede: 347
@@ -14691,7 +14691,7 @@
     43: 1
     32: 1
     10: 1
-- !ruby/object:Profile 
+- !ruby/object:LanguageDetector::Profile 
   name: de
   ngrams: 
     Ope: 1204
@@ -16751,7 +16751,7 @@
     43: 1
     32: 1
     10: 1
-- !ruby/object:Profile 
+- !ruby/object:LanguageDetector::Profile 
   name: el
   ngrams: 
     ? !binary "zpTPic8=\n"
@@ -22079,7 +22079,7 @@
     43: 1
     32: 1
     10: 1
-- !ruby/object:Profile 
+- !ruby/object:LanguageDetector::Profile 
   name: en
   ngrams: 
     my_: 833
@@ -24129,7 +24129,7 @@
     43: 1
     32: 1
     10: 1
-- !ruby/object:Profile 
+- !ruby/object:LanguageDetector::Profile 
   name: et
   ngrams: 
     _saav: 1637
@@ -26215,7 +26215,7 @@
     43: 1
     32: 1
     10: 1
-- !ruby/object:Profile 
+- !ruby/object:LanguageDetector::Profile 
   name: es
   ngrams: 
     nco: 1791
@@ -28277,7 +28277,7 @@
     43: 1
     32: 1
     10: 1
-- !ruby/object:Profile 
+- !ruby/object:LanguageDetector::Profile 
   name: fa
   ngrams: 
     ? !binary "2YPYp9g=\n"
@@ -33419,7 +33419,7 @@
     43: 1
     32: 1
     10: 1
-- !ruby/object:Profile 
+- !ruby/object:LanguageDetector::Profile 
   name: fi
   ngrams: 
     valla: 637
@@ -35483,7 +35483,7 @@
     43: 1
     32: 1
     10: 1
-- !ruby/object:Profile 
+- !ruby/object:LanguageDetector::Profile 
   name: fr
   ngrams: 
     hine: 1617
@@ -37549,7 +37549,7 @@
     43: 1
     32: 1
     10: 1
-- !ruby/object:Profile 
+- !ruby/object:LanguageDetector::Profile 
   name: fy
   ngrams: 
     nfoel: 1606
@@ -39607,7 +39607,7 @@
     43: 1
     32: 1
     10: 1
-- !ruby/object:Profile 
+- !ruby/object:LanguageDetector::Profile 
   name: ga
   ngrams: 
     ud: 1880
@@ -41671,7 +41671,7 @@
     43: 1
     32: 1
     10: 1
-- !ruby/object:Profile 
+- !ruby/object:LanguageDetector::Profile 
   name: he
   ngrams: 
     ? !binary "ldep15k=\n"
@@ -46859,7 +46859,7 @@
     43: 1
     32: 1
     10: 1
-- !ruby/object:Profile 
+- !ruby/object:LanguageDetector::Profile 
   name: hi
   ngrams: 
     ? !binary "ruCkuA==\n"
@@ -51907,7 +51907,7 @@
     43: 1
     32: 1
     10: 1
-- !ruby/object:Profile 
+- !ruby/object:LanguageDetector::Profile 
   name: hr
   ngrams: 
     vine: 1902
@@ -53967,7 +53967,7 @@
     43: 1
     32: 1
     10: 1
-- !ruby/object:Profile 
+- !ruby/object:LanguageDetector::Profile 
   name: io
   ngrams: 
     _Kere: 1912
@@ -56027,7 +56027,7 @@
     43: 1
     32: 1
     10: 1
-- !ruby/object:Profile 
+- !ruby/object:LanguageDetector::Profile 
   name: is
   ngrams: 
     kaga_: 1774
@@ -58175,7 +58175,7 @@
     43: 1
     32: 1
     10: 1
-- !ruby/object:Profile 
+- !ruby/object:LanguageDetector::Profile 
   name: it
   ngrams: 
     Ope: 1795
@@ -60235,7 +60235,7 @@
     43: 1
     32: 1
     10: 1
-- !ruby/object:Profile 
+- !ruby/object:LanguageDetector::Profile 
   name: ja
   ngrams: 
     ? !binary "g6vj\n"
@@ -65965,7 +65965,7 @@
     43: 1
     32: 1
     10: 1
-- !ruby/object:Profile 
+- !ruby/object:LanguageDetector::Profile 
   name: ko
   ngrams: 
     ? !binary "mIDqsw==\n"
@@ -71445,7 +71445,7 @@
     43: 1
     32: 1
     10: 1
-- !ruby/object:Profile 
+- !ruby/object:LanguageDetector::Profile 
   name: hu
   ngrams: 
     "ens\xC3\xA9": 1414
@@ -73515,7 +73515,7 @@
     43: 1
     32: 1
     10: 1
-- !ruby/object:Profile 
+- !ruby/object:LanguageDetector::Profile 
   name: nl
   ngrams: 
     He: 619
@@ -75565,7 +75565,7 @@
     43: 1
     32: 1
     10: 1
-- !ruby/object:Profile 
+- !ruby/object:LanguageDetector::Profile 
   name: "no"
   ngrams: 
     Ope: 1032
@@ -77625,7 +77625,7 @@
     43: 1
     32: 1
     10: 1
-- !ruby/object:Profile 
+- !ruby/object:LanguageDetector::Profile 
   name: pl
   ngrams: 
     "k\xC3\xB3w": 1379
@@ -79717,7 +79717,7 @@
     43: 1
     32: 1
     10: 1
-- !ruby/object:Profile 
+- !ruby/object:LanguageDetector::Profile 
   name: pt
   ngrams: 
     nco: 1274
@@ -81815,7 +81815,7 @@
     43: 1
     32: 1
     10: 1
-- !ruby/object:Profile 
+- !ruby/object:LanguageDetector::Profile 
   name: ro
   ngrams: 
     _ur: 1996
@@ -83893,7 +83893,7 @@
     43: 1
     32: 1
     10: 1
-- !ruby/object:Profile 
+- !ruby/object:LanguageDetector::Profile 
   name: ru
   ngrams: 
     ? !binary "v9C/\n"
@@ -89077,7 +89077,7 @@
     43: 1
     32: 1
     10: 1
-- !ruby/object:Profile 
+- !ruby/object:LanguageDetector::Profile 
   name: sl
   ngrams: 
     preds: 594
@@ -91147,7 +91147,7 @@
     43: 1
     32: 1
     10: 1
-- !ruby/object:Profile 
+- !ruby/object:LanguageDetector::Profile 
   name: sv
   ngrams: 
     karna: 1187
@@ -93197,7 +93197,7 @@
     43: 1
     32: 1
     10: 1
-- !ruby/object:Profile 
+- !ruby/object:LanguageDetector::Profile 
   name: th
   ngrams: 
     ? !binary "uYPguKs=\n"
@@ -98785,7 +98785,7 @@
     43: 1
     32: 1
     10: 1
-- !ruby/object:Profile 
+- !ruby/object:LanguageDetector::Profile 
   name: uk
   ngrams: 
     "\xBA\xD0\xBE__": 1806
@@ -103973,7 +103973,7 @@
     43: 1
     32: 1
     10: 1
-- !ruby/object:Profile 
+- !ruby/object:LanguageDetector::Profile 
   name: vi
   ngrams: 
     ? !binary "xJHhu5E=\n"
@@ -106335,7 +106335,7 @@
     43: 1
     32: 1
     10: 1
-- !ruby/object:Profile 
+- !ruby/object:LanguageDetector::Profile 
   name: zh
   ngrams: 
     ? !binary "6L+Z\n"

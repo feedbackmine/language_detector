@@ -6,7 +6,7 @@ class LanguageDetector
   def detect text
     @profiles ||= load_model
 
-    p = Profile.new("")
+    p = LanguageDetector::Profile.new("")
     p.init_with_string text
     best_profile = nil
     best_distance = nil
@@ -97,7 +97,7 @@ class LanguageDetector
 
     profiles = []
     training_data.each {|data|
-      p = Profile.new data[0]
+      p = LanguageDetector::Profile.new data[0]
       p.init_with_file data[1]
       profiles << p
     }
@@ -112,118 +112,119 @@ class LanguageDetector
     filename = File.expand_path(File.join(File.dirname(__FILE__), "model.yml"))
     @profiles = YAML.load_file(filename)
   end
-end
 
-class Profile
+  class LanguageDetector::Profile
 
-  PUNCTUATIONS = [?\n, ?\r, ?\t, ?\s, ?!, ?", ?#, ?$, ?%, ?&, ?', ?(, ?), ?*, ?+, ?,, ?-, ?., ?/,
-  ?0, ?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9,
-  ?:, ?;, ?<, ?=, ?>, ??, ?@, ?[, ?\\, ?], ?^, ?_, ?`, ?{, ?|, ?}, ?~]
+    PUNCTUATIONS = [?\n, ?\r, ?\t, ?\s, ?!, ?", ?#, ?$, ?%, ?&, ?', ?(, ?), ?*, ?+, ?,, ?-, ?., ?/,
+    ?0, ?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9,
+    ?:, ?;, ?<, ?=, ?>, ??, ?@, ?[, ?\\, ?], ?^, ?_, ?`, ?{, ?|, ?}, ?~]
 
-  LIMIT = 2000
+    LIMIT = 2000
 
-  def compute_distance other_profile
-    distance = 0
-    other_profile.ngrams.each {|k, v|
-      n = @ngrams[k]
-      if n
-        distance += (v - n).abs
-      else
-        distance += Profile::LIMIT
-      end
-    }
-    return distance
-  end
-
-  attr_reader :ngrams, :name
-
-  def initialize(name)
-    @name = name
-    @puctuations = {}
-    PUNCTUATIONS.each {|p| @puctuations[p] = 1}
-    @ngrams = {}
-  end
-
-  def init_with_file filename
-    ngram_count = {}
-
-    path = File.expand_path(File.join(File.dirname(__FILE__), "training_data/" + filename))
-    puts "training with " + path
-    File.open(path).each_line{ |line|
-      _init_with_string line, ngram_count
-    }
-
-    a = ngram_count.sort {|a,b| b[1] <=> a[1]}
-    i = 1
-    a.each {|t|
-      @ngrams[t[0]] = i
-      i += 1
-      break if i > LIMIT
-    }
-  end
-
-  def init_with_string str
-    ngram_count = {}
-
-    _init_with_string str, ngram_count
-
-    a = ngram_count.sort {|a,b| b[1] <=> a[1]}
-    i = 1
-    a.each {|t|
-      @ngrams[t[0]] = i
-      i += 1
-      break if i > LIMIT
-    }
-  end
-
-  def _init_with_string str, ngram_count
-    tokens = tokenize(str)
-    tokens.each {|token|
-      count_ngram token, 2, ngram_count
-      count_ngram token, 3, ngram_count
-      count_ngram token, 4, ngram_count
-      count_ngram token, 5, ngram_count
-    }
-  end
-
-  def tokenize str
-    tokens = []
-    s = ''
-    str.each_byte {|b|
-      if is_puctuation?(b)
-        tokens << s unless s.empty?
-        s = ''
-      else
-        s << b
-      end
-    }
-    tokens << s unless s.empty?
-    return tokens
-  end
-
-  def is_puctuation? b
-    @puctuations[b]
-  end
-
-  def count_ngram token, n, counts
-    token = "_#{token}#{'_' * (n-1)}" if n > 1 && token.jlength >= n
-    i = 0
-    while i + n <= token.length
-      s = ''
-      j = 0
-      while j < n
-        s << token[i+j]
-        j += 1
-      end
-      if counts[s]
-        counts[s] = counts[s] + 1
-      else
-        counts[s] = 1
-      end
-      i += 1
+    def compute_distance other_profile
+      distance = 0
+      other_profile.ngrams.each {|k, v|
+        n = @ngrams[k]
+        if n
+          distance += (v - n).abs
+        else
+          distance += LanguageDetector::Profile::LIMIT
+        end
+      }
+      return distance
     end
 
-    return counts
+    attr_reader :ngrams, :name
+
+    def initialize(name)
+      @name = name
+      @puctuations = {}
+      PUNCTUATIONS.each {|p| @puctuations[p] = 1}
+      @ngrams = {}
+    end
+
+    def init_with_file filename
+      ngram_count = {}
+
+      path = File.expand_path(File.join(File.dirname(__FILE__), "training_data/" + filename))
+      puts "training with " + path
+      File.open(path).each_line{ |line|
+        _init_with_string line, ngram_count
+      }
+
+      a = ngram_count.sort {|a,b| b[1] <=> a[1]}
+      i = 1
+      a.each {|t|
+        @ngrams[t[0]] = i
+        i += 1
+        break if i > LIMIT
+      }
+    end
+
+    def init_with_string str
+      ngram_count = {}
+
+      _init_with_string str, ngram_count
+
+      a = ngram_count.sort {|a,b| b[1] <=> a[1]}
+      i = 1
+      a.each {|t|
+        @ngrams[t[0]] = i
+        i += 1
+        break if i > LIMIT
+      }
+    end
+
+    def _init_with_string str, ngram_count
+      tokens = tokenize(str)
+      tokens.each {|token|
+        count_ngram token, 2, ngram_count
+        count_ngram token, 3, ngram_count
+        count_ngram token, 4, ngram_count
+        count_ngram token, 5, ngram_count
+      }
+    end
+
+    def tokenize str
+      tokens = []
+      s = ''
+      str.each_byte {|b|
+        if is_puctuation?(b)
+          tokens << s unless s.empty?
+          s = ''
+        else
+          s << b
+        end
+      }
+      tokens << s unless s.empty?
+      return tokens
+    end
+
+    def is_puctuation? b
+      @puctuations[b]
+    end
+
+    def count_ngram token, n, counts
+      token = "_#{token}#{'_' * (n-1)}" if n > 1 && token.jlength >= n
+      i = 0
+      while i + n <= token.length
+        s = ''
+        j = 0
+        while j < n
+          s << token[i+j]
+          j += 1
+        end
+        if counts[s]
+          counts[s] = counts[s] + 1
+        else
+          counts[s] = 1
+        end
+        i += 1
+      end
+
+      return counts
+    end
+
   end
 
 end

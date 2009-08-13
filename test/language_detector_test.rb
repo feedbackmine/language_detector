@@ -4,7 +4,7 @@ require File.dirname(__FILE__) + '/../lib/language_detector'
 
 class ProfileTest < Test::Unit::TestCase
   def test_is_puctuation
-    p = Profile.new("test")
+    p = LanguageDetector::Profile.new("test")
     assert p.is_puctuation?(?,)
     assert p.is_puctuation?(?.)
     assert !p.is_puctuation?(?A)
@@ -12,12 +12,12 @@ class ProfileTest < Test::Unit::TestCase
   end
 
   def test_tokenize
-    p = Profile.new("test")
+    p = LanguageDetector::Profile.new("test")
     assert_equal ["this", "is", "A", "test"], p.tokenize("this is ,+_  A \t 123 test")
   end
 
   def test_count_ngram
-    p = Profile.new("test")
+    p = LanguageDetector::Profile.new("test")
     assert_equal({"w"=>1, "o"=>1, "r"=>1, "d"=>1, "s"=>1}, p.count_ngram('words', 1, {}))
     assert_equal({"wo"=>1, "or"=>1, "rd"=>1, "ds"=>1, "_w" => 1, "s_" => 1}, p.count_ngram('words', 2, {}))
     assert_equal({"wor"=>1, "ord"=>1, "rds"=>1, "_wo" => 1, "ds_" => 1, "s__" => 1}, p.count_ngram('words', 3, {}))
@@ -27,25 +27,29 @@ class ProfileTest < Test::Unit::TestCase
   end
 
   def test_init_with_string
-    p = Profile.new("test")
+    p = LanguageDetector::Profile.new("test")
     p.init_with_string("this is ,+_  A \t 123 test")
-    assert_equal([["t_", 30], ["st__", 29], ["st", 16], ["hi", 8], ["_tes", 7], ["is__", 6], ["s___", 5], ["s_", 3], ["his_", 11], ["tes", 10], ["t___", 9], ["es", 12], ["_te", 14], ["est_", 13], ["est", 15], ["te", 4], ["his", 17], ["_th", 20], ["s__", 19], ["st_", 18], ["th", 24], ["_thi", 23], ["t__", 22], ["test", 21], ["thi", 28], ["is_", 27], ["this", 26], ["_i", 25], ["is", 2], ["_t", 1]], p.ngrams.sort_by { |a,b| a[1] <=> b[1] })
+    assert_equal(
+      [["t_", 30], ["st__", 29], ["st", 16], ["hi", 8], ["_tes", 7], ["is__", 6], ["s___", 5], ["s_", 3], ["his_", 11], ["tes", 10], ["t___", 9], ["es", 12], ["_te", 14], ["est_", 13], ["est", 15], ["te", 4], ["his", 17], ["_th", 20], ["s__", 19], ["st_", 18], ["th", 24], ["_thi", 23], ["t__", 22], ["test", 21], ["thi", 28], ["is_", 27], ["this", 26], ["_i", 25], ["is", 2], ["_t", 1]],
+      p.ngrams.sort_by { |a,b| a[1] <=> b[1] },
+      "This test does not pass in the original repository either: http://github.com/feedbackmine/language_detector"
+    )
   end
 
   def test_init_with_file
-    p = Profile.new("test")
+    p = LanguageDetector::Profile.new("test")
     p.init_with_file("bg-utf8.txt")
     assert !p.ngrams.empty?
   end
 
   def test_compute_distance
-    p1 = Profile.new("test")
+    p1 = LanguageDetector::Profile.new("test")
     p1.init_with_string("this is ,+_  A \t 123 test")
-    p2 = Profile.new("test")
+    p2 = LanguageDetector::Profile.new("test")
     p2.init_with_string("this is ,+_  A \t 123 test")
     assert_equal 0, p1.compute_distance(p2)
 
-    p3 = Profile.new("test")
+    p3 = LanguageDetector::Profile.new("test")
     p3.init_with_string("xxxx")
     assert_equal 24000, p1.compute_distance(p3)
   end
