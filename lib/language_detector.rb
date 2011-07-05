@@ -1,5 +1,5 @@
 require 'yaml'
-require 'jcode'
+require 'jcode' if RUBY_VERSION < '1.9'
 $KCODE = 'u' if RUBY_VERSION < '1.9'
 
 class LanguageDetector
