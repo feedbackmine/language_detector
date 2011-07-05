@@ -205,7 +205,11 @@ class LanguageDetector
     end
 
     def count_ngram token, n, counts
-      token = "_#{token}#{'_' * (n-1)}" if n > 1 && token.jlength >= n
+      if RUBY_VERSION < '1.9'
+        token = "_#{token}#{'_' * (n-1)}" if n > 1 && token.jlength >= n
+      else
+        token = "_#{token}#{'_' * (n-1)}" if n > 1 && token.length >= n
+      end
       i = 0
       while i + n <= token.length
         s = ''
