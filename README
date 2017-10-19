@@ -1,21 +1,24 @@
-
-== Welcome
+# Welcome
 This is a n-gram based language detector, written in ruby. 
 
 For technical details about language detection, I recommend this paper: http://www.sfs.uni-tuebingen.de/iscl/Theses/kranig.pdf
 
-== Installation
-sudo gem sources -a http://gems.github.com (you only have to do this once)
-sudo gem install feedbackmine-language_detector
+# Installation
+You only have to do this once
 
-== Usage
+```$ sudo gem sources -a http://gems.github.com```
+```$ sudo gem install feedbackmine-language_detector```
+
+# Usage
+```ruby
 require 'language_detector'
 d = LanguageDetector.new
 p d.detect('this text is in English')
+```
 
-== Thanks
-Kevin Burton (http://feedblog.org/2005/08/19/ngram-language-categorization-source/ ). I used all the training data in his ngramcat project.
+# Thanks
+[Kevin Burton](http://feedblog.org/2005/08/19/ngram-language-categorization-source/). I used all the training data in his ngramcat project.
 
-== Follow us on twitter
+# Follow us on twitter
 
 http://twitter.com/feedbackmine
